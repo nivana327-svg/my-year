@@ -1,73 +1,399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My Year</title>
+<title>MY YEAR</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f2ff;
-            color: #30283d;
-            text-align: center;
-            padding: 40px 20px;
-        }
+<style>
+* {
+    box-sizing: border-box;
+}
 
-        .card {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #eee8f7;
+    color: #292333;
+}
 
-        h1 {
-            font-size: 40px;
-            margin-bottom: 5px;
-        }
+header {
+    background: #292333;
+    color: white;
+    padding: 25px;
+    text-align: center;
+}
 
-        p {
-            color: #71687d;
-        }
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
 
-        button {
-            border: none;
-            background: #8d70c7;
-            color: white;
-            padding: 14px 22px;
-            border-radius: 15px;
-            font-size: 16px;
-            cursor: pointer;
-        }
+header p {
+    margin: 6px 0 0;
+    opacity: 0.75;
+}
 
-        button:hover {
-            background: #7659ad;
-        }
-    </style>
+main {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.task {
+    border: 2px solid #e4dff0;
+    border-radius: 16px;
+    padding: 15px;
+    margin-top: 12px;
+}
+
+.task-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+button {
+    border: none;
+    border-radius: 12px;
+    padding: 11px 16px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-right: 6px;
+}
+
+.yes {
+    background: #88b895;
+    color: white;
+}
+
+.no {
+    background: #d98b8b;
+    color: white;
+}
+
+.rest {
+    background: #aaa0bd;
+    color: white;
+}
+
+.message {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+.completed {
+    opacity: 0.55;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd5e8;
+    border-radius: 12px;
+    font-family: inherit;
+    margin-top: 8px;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.photo-box {
+    border: 2px dashed #c7b9db;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    color: #71697d;
+}
+</style>
 </head>
 
 <body>
 
+<header>
+    <h1>MY YEAR</h1>
+    <p>Do the thing. Then move on.</p>
+</header>
+
+<main>
+
     <div class="card">
-        <h1>My Year ✦</h1>
-
-        <p>
-            Welcome to your personal glow-up dashboard.
-        </p>
-
-        <button onclick="hello()">
-            Start my day
-        </button>
+        <h2 id="date"></h2>
+        <p id="status">Let's see what you've done today.</p>
     </div>
 
-    <script>
-        function hello() {
-            alert("Okay girl. Let's get to work. 💜");
+
+    <div class="card">
+        <h2>YOUR MISSIONS</h2>
+
+        <div class="task" id="task-workout">
+            <div class="task-title">🏃 Did you do your workout?</div>
+
+            <button class="yes" onclick="answer('workout','yes')">
+                YES
+            </button>
+
+            <button class="no" onclick="answer('workout','no')">
+                NO
+            </button>
+
+            <button class="rest" onclick="answer('workout','rest')">
+                I'M INJURED / NEED REST
+            </button>
+
+            <div class="message" id="message-workout"></div>
+        </div>
+
+
+        <div class="task" id="task-homework">
+            <div class="task-title">📚 Did you do your homework?</div>
+
+            <button class="yes" onclick="answer('homework','yes')">
+                YES
+            </button>
+
+            <button class="no" onclick="answer('homework','no')">
+                NO
+            </button>
+
+            <div class="message" id="message-homework"></div>
+        </div>
+
+
+        <div class="task" id="task-study">
+            <div class="task-title">🧠 Did you study?</div>
+
+            <button class="yes" onclick="answer('study','yes')">
+                YES
+            </button>
+
+            <button class="no" onclick="answer('study','no')">
+                NO
+            </button>
+
+            <div class="message" id="message-study"></div>
+        </div>
+
+
+        <div class="task" id="task-social">
+            <div class="task-title">💬 Did you do your social challenge?</div>
+
+            <button class="yes" onclick="answer('social','yes')">
+                YES
+            </button>
+
+            <button class="no" onclick="answer('social','no')">
+                NO
+            </button>
+
+            <div class="message" id="message-social"></div>
+        </div>
+
+    </div>
+
+
+    <div class="card">
+        <h2>📸 TODAY'S PHOTOS</h2>
+
+        <div class="photo-box">
+            <p>What did you capture today?</p>
+
+            <input
+                type="file"
+                id="photos"
+                accept="image/*"
+                multiple
+            >
+        </div>
+    </div>
+
+
+    <div class="card">
+        <h2>🧠 WHAT'S ON YOUR MIND?</h2>
+
+        <textarea
+            id="thoughts"
+            placeholder="Write whatever is in your head..."
+        ></textarea>
+    </div>
+
+
+    <div class="card">
+        <h2>✨ TODAY'S WIN</h2>
+
+        <input
+            id="win"
+            placeholder="What did you actually accomplish today?"
+        >
+    </div>
+
+</main>
+
+<footer>
+    One day at a time.
+</footer>
+
+
+<script>
+
+const today = new Date();
+
+document.getElementById("date").textContent =
+    today.toLocaleDateString(undefined, {
+        weekday: "long",
+        month: "long",
+        day: "numeric"
+    });
+
+
+const messages = {
+
+    workout: {
+        no: "NOPE. Go start it. I'll ask again.",
+        rest: "Okay. Rest counts. Don't train through an injury.",
+        yes: "GOOD. Workout handled. NEXT."
+    },
+
+    homework: {
+        no: "Then go do it. I'll be back.",
+        yes: "GOOD. NEXT."
+    },
+
+    study: {
+        no: "You said you were going to study. Go start.",
+        yes: "DONE. NEXT."
+    },
+
+    social: {
+        no: "Go talk to someone. Awkward is allowed.",
+        yes: "SOCIAL MISSION COMPLETE. NEXT."
+    }
+
+};
+
+
+function answer(task, response) {
+
+    const message =
+        document.getElementById("message-" + task);
+
+    const taskBox =
+        document.getElementById("task-" + task);
+
+
+    message.textContent =
+        messages[task][response];
+
+
+    if (response === "yes" || response === "rest") {
+
+        taskBox.classList.add("completed");
+
+    }
+
+    localStorage.setItem(
+        "myyear-" + task,
+        response
+    );
+
+
+    updateStatus();
+}
+
+
+function updateStatus() {
+
+    const tasks = [
+        "workout",
+        "homework",
+        "study",
+        "social"
+    ];
+
+    let finished = 0;
+
+    tasks.forEach(task => {
+
+        const saved =
+            localStorage.getItem("myyear-" + task);
+
+        if (saved === "yes" || saved === "rest") {
+            finished++;
         }
-    </script>
+
+    });
+
+
+    document.getElementById("status").textContent =
+        finished + " / " + tasks.length +
+        " missions completed.";
+}
+
+
+function loadSavedTasks() {
+
+    const tasks = [
+        "workout",
+        "homework",
+        "study",
+        "social"
+    ];
+
+    tasks.forEach(task => {
+
+        const saved =
+            localStorage.getItem("myyear-" + task);
+
+        if (saved) {
+
+            const message =
+                document.getElementById(
+                    "message-" + task
+                );
+
+            message.textContent =
+                messages[task][saved];
+
+            if (saved === "yes" || saved === "rest") {
+
+                document
+                    .getElementById("task-" + task)
+                    .classList.add("completed");
+
+            }
+
+        }
+
+    });
+
+    updateStatus();
+}
+
+
+loadSavedTasks();
+
+</script>
 
 </body>
 </html>
